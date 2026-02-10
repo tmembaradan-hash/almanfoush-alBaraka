@@ -1126,9 +1126,7 @@ function toast_(msg, ok){
 }
 
 /******** حساب الكميات والمتبقي ********/
-function getQtyInCartForProduct(productId){
-  return CART.filter(x => x.id == productId).reduce((s,x)=>s + (Number(x.qty)||0), 0);
-}
+
 
 function remainingFor_(p){
   const available = Number(p.available ?? 0);
@@ -1202,72 +1200,128 @@ function remainingFor_(p){
     });
   }
 
-  function renderProducts() {
-    const menuDiv = document.getElementById('menu');
-    const infoDiv = document.getElementById('productsInfo');
-    menuDiv.innerHTML = '';
-    infoDiv.textContent = '';
+function renderProducts() {
+  const menuDiv = document.getElementById('menu');
+  const infoDiv = document.getElementById('productsInfo');
+  menuDiv.innerHTML = '';
+  infoDiv.textContent = '';
 
-    const search = document.getElementById('searchInput').value.trim().toLowerCase();
-    const cat = document.getElementById('categoryFilter').value;
+  const search = document.getElementById('searchInput').value.trim().toLowerCase();
+  const cat = document.getElementById('categoryFilter').value;
 
-    let items = PRODUCTS;
-    if (search) {
-      items = items.filter(m => {
-        const hay = (
-          (m.name || '') + ' ' +
-          (m.description || '') + ' ' +
-          (m.tags || '') + ' ' +
-          (m.colors || '') + ' ' +
-          (m.sizes || '')
-        ).toLowerCase();
-        return hay.indexOf(search) !== -1;
-      });
+  let items = PRODUCTS;
+
+  if (search) {
+    items = items.filter(m => {
+      const hay = (
+        (m.name || '') + ' ' +
+        (m.description || '') + ' ' +
+        (m.tags || '') + ' ' +
+        (m.colors || '') + ' ' +
+        (m.sizes || '')
+      ).toLowerCase();
+      return hay.indexOf(search) !== -1;
+    });
+  }
+  if (cat) items = items.filter(m => m.category === cat);
+
+  const total = items.length;
+  const MAX_RENDER = 100;
+  const sliced = items.slice(0, MAX_RENDER);
+
+  if (!sliced.length) {
+    menuDiv.innerHTML = '<div>لا توجد منتجات مطابقة للبحث.</div>';
+    return;
+  }
+
+  sliced.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'menu-item';
+
+    const imgDiv = document.createElement('div');
+    imgDiv.className = 'menu-img';
+    if (item.image_url) imgDiv.style.backgroundImage = `url("${item.image_url}")`;
+    else imgDiv.style.backgroundImage = 'radial-gradient(circle at top, #e8f2ff, #2a8cff)';
+
+    const colorsArr = (item.colors || '').split(',').map(c => c.trim()).filter(Boolean);
+    const sizesArr  = (item.sizes || '').split(',').map(s => s.trim()).filter(Boolean);
+
+    let colorsHtml = '';
+    if (colorsArr.length) {
+      colorsHtml = `
+        <div class="menu-color-select">
+          <select class="color-select" data-id="${item.id}">
+            ${colorsArr.map(c => `<option value="${escapeHtml_(c)}">${escapeHtml_(c)}</option>`).join('')}
+          </select>
+        </div>
+      `;
     }
-    if (cat) items = items.filter(m => m.category === cat);
 
-    const total = items.length;
-    const MAX_RENDER = 100;
-    const sliced = items.slice(0, MAX_RENDER);
-
-    if (!sliced.length) {
-      menuDiv.innerHTML = '<div>لا توجد منتجات مطابقة للبحث.</div>';
-      return;
+    let sizesHtml = '';
+    if (sizesArr.length) {
+      sizesHtml = `
+        <div class="menu-size-select">
+          <select class="size-select" data-id="${item.id}">
+            ${sizesArr.map(s => `<option value="${escapeHtml_(s)}">${escapeHtml_(s)}</option>`).join('')}
+          </select>
+        </div>
+      `;
     }
 
-    sliced.forEach(item => {
-      const card = document.createElement('div');
-      card.className = 'menu-item';
+    const content = document.createElement('div');
+    content.className = 'menu-content';
 
-      const imgDiv = document.createElement('div');
-      imgDiv.className = 'menu-img';
-      if (item.image_url) imgDiv.style.backgroundImage = `url("${item.image_url}")`;
-      else imgDiv.style.backgroundImage = 'radial-gradient(circle at top, #e8f2ff, #2a8cff)';
+    const { available, maxPer, inCart, remaining } = remainingFor_(item);
+    const disabled = remaining <= 0;
 
-      const colorsArr = (item.colors || '').split(',').map(c => c.trim()).filter(Boolean);
-      const sizesArr = (item.sizes || '').split(',').map(s => s.trim()).filter(Boolean);
+    const btnText = disabled
+      ? (available <= 0 ? 'نفدت الكمية' : (maxPer && inCart >= maxPer ? 'وصلت للحد' : 'غير متاح'))
+      : 'إضافة للسلة';
 
-      let colorsHtml = '';
-      if (colorsArr.length) {
-        colorsHtml = `
-          <div class="menu-color-select">
-            <select class="color-select" data-id="${item.id}">
-              ${colorsArr.map(c => `<option value="${escapeHtml_(c)}">${escapeHtml_(c)}</option>`).join('')}
-            </select>
-          </div>
-        `;
-      }
+    const tagsLine = [
+      item.tags ? escapeHtml_(item.tags) : '',
+      `المتوفر: <strong>${available}</strong>`,
+      `في السلة: <strong>${inCart}</strong>`,
+      maxPer ? `حد العميل: <strong>${maxPer}</strong>` : '',
+      `المتبقي: <strong>${remaining === Infinity ? available : remaining}</strong>`
+    ].filter(Boolean).join(' • ');
 
-      let sizesHtml = '';
-      if (sizesArr.length) {
-        sizesHtml = `
-          <div class="menu-size-select">
-            <select class="size-select" data-id="${item.id}">
-              ${sizesArr.map(s => `<option value="${escapeHtml_(s)}">${escapeHtml_(s)}</option>`).join('')}
-            </select>
-          </div>
-        `;
-      }
+    const limitBox = maxPer ? `
+      <div class="menu-limit">
+        حد العميل: <strong>${maxPer}</strong> • متبقي لك: <strong>${Math.max(0, maxPer - inCart)}</strong>
+      </div>
+    ` : '';
+
+    content.innerHTML = `
+      <div>
+        <h3>${escapeHtml_(item.name)}</h3>
+        <div class="menu-category">${escapeHtml_(item.category || '')}</div>
+        <div class="menu-desc">${escapeHtml_(item.description || '')}</div>
+        <div class="menu-tags">${tagsLine}</div>
+        ${limitBox}
+        ${colorsHtml}
+        ${sizesHtml}
+      </div>
+      <div class="menu-footer">
+        <div class="menu-price">${item.price} ل.س</div>
+        <button class="btn btn-primary ${disabled ? 'btn-disabled' : ''}" data-id="${item.id}" ${disabled ? 'disabled' : ''}>
+          ${btnText}
+        </button>
+      </div>
+    `;
+
+    const btn = content.querySelector('button');
+    btn.addEventListener('click', () => addToCart(item.id));
+
+    card.appendChild(imgDiv);
+    card.appendChild(content);
+    menuDiv.appendChild(card);
+  });
+
+  if (total > MAX_RENDER) infoDiv.textContent = `تم عرض ${sliced.length} من ${total} منتج. ضيّق البحث.`;
+  else infoDiv.textContent = `عدد المنتجات المعروضة: ${total}`;
+}
+
 
       const content = document.createElement('div');
       content.className = 'menu-content';
@@ -1334,46 +1388,54 @@ function remainingFor_(p){
     return CART.filter(x => x.id == productId).reduce((s,x)=>s + (x.qty||0), 0);
   }
 
-  function addToCart(productId) {
-    const item = PRODUCTS.find(m => m.id == productId);
-    if (!item) return;
+ function addToCart(productId) {
+  const item = PRODUCTS.find(m => m.id == productId);
+  if (!item) return;
 
-    const available = Number(item.available ?? 0);
-    const already = getQtyInCartForProduct(productId);
+  const { available, maxPer, inCart, remaining } = remainingFor_(item);
 
-    if (already >= available) {
-      showStatus('لا يمكن إضافة أكثر من المتوفر لهذا المنتج.', false);
-      return;
-    }
-
-    const max = Number(item.max_per_customer || 0);
-    if (max && already >= max) {
-      showStatus('لا يمكن شراء أكثر من ' + max + ' من هذا المنتج لكل عميل.', false);
-      return;
-    }
-
-    const color = findColorForProduct(productId);
-    const size = findSizeForProduct(productId);
-    const key = productId + '::' + color + '::' + size;
-
-    const existing = CART.find(c => c.key === key);
-    if (existing) existing.qty += 1;
-    else {
-      CART.push({
-        key,
-        id: item.id,
-        name: item.name,
-        price: Number(item.price) || 0,
-        qty: 1,
-        color,
-        size
-      });
-    }
-
-    renderCart();
+  if (available <= 0) {
+    toast_('هذا المنتج <strong>نفدت كميته</strong>.', false);
     bumpCartAnimation_();
-    feedback_();
+    return;
   }
+
+  if (remaining <= 0) {
+    if (maxPer && inCart >= maxPer) {
+      toast_('لا يمكن شراء أكثر من <strong>' + maxPer + '</strong> من هذا المنتج لكل عميل.', false);
+    } else {
+      toast_('لا يمكن إضافة أكثر من <strong>المتوفر</strong> لهذا المنتج.', false);
+    }
+    bumpCartAnimation_();
+    return;
+  }
+
+  const color = findColorForProduct(productId);
+  const size = findSizeForProduct(productId);
+  const key = productId + '::' + color + '::' + size;
+
+  const existing = CART.find(c => c.key === key);
+  if (existing) existing.qty += 1;
+  else {
+    CART.push({
+      key,
+      id: item.id,
+      name: item.name,
+      price: Number(item.price) || 0,
+      qty: 1,
+      color,
+      size
+    });
+  }
+
+  renderCart();
+  renderProducts(); // ✅ تحديث الأزرار والمتبقي مباشرة
+  bumpCartAnimation_();
+  feedback_();
+
+  toast_('تمت إضافة المنتج إلى السلة ✅', true);
+}
+
 
   function bumpCartAnimation_() {
     const cartCard = document.getElementById('cartCard');
@@ -1388,25 +1450,29 @@ function remainingFor_(p){
     addSound.play().catch(() => {});
   }
 
-  function changeQty(cartKey, delta) {
-    const existing = CART.find(c => c.key === cartKey);
-    if (!existing) return;
+function changeQty(cartKey, delta) {
+  const existing = CART.find(c => c.key === cartKey);
+  if (!existing) return;
 
-    // تحقق من عدم تجاوز المتوفر/الحد
-    const prod = PRODUCTS.find(p => p.id == existing.id);
-    const available = Number(prod?.available ?? 0);
-    const max = Number(prod?.max_per_customer || 0);
+  const prod = PRODUCTS.find(p => p.id == existing.id);
+  if (!prod) return;
 
-    if (delta > 0) {
-      const already = getQtyInCartForProduct(existing.id);
-      if (already >= available) { showStatus('لا يمكن زيادة الكمية (تجاوز المتوفر).', false); return; }
-      if (max && already >= max) { showStatus('لا يمكن زيادة الكمية (تجاوز حد العميل).', false); return; }
+  if (delta > 0) {
+    const { remaining, maxPer, inCart } = remainingFor_(prod);
+    if (remaining <= 0) {
+      if (maxPer && inCart >= maxPer) toast_('وصلت لحد العميل لهذا المنتج.', false);
+      else toast_('لا يمكن زيادة الكمية (تجاوز المتوفر).', false);
+      return;
     }
-
-    existing.qty += delta;
-    if (existing.qty <= 0) CART = CART.filter(c => c.key !== cartKey);
-    renderCart();
   }
+
+  existing.qty += delta;
+  if (existing.qty <= 0) CART = CART.filter(c => c.key !== cartKey);
+
+  renderCart();
+  renderProducts(); // ✅ تحديث المتبقي وتعطيل الأزرار
+}
+
 
   function renderCart() {
     const cartDiv = document.getElementById('cart-content');
