@@ -10,17 +10,16 @@
 
   <style>
     :root{
-      /* هوية المنفوش: أزرق + أبيض + لمسة ذهبية */
-      --primary-dark:#0b3b75;     /* أزرق غامق */
-      --primary:#1e6fd6;          /* أزرق أساسي */
-      --accent:#f2c14e;           /* ذهبي خفيف */
-      --accent-soft:#fff3cf;      /* ذهبي فاتح جداً */
-      --bg:#f3f8ff;               /* خلفية زرقاء فاتحة */
+      --primary-dark:#0b3b75;
+      --primary:#1e6fd6;
+      --accent:#f2c14e;
+      --accent-soft:#fff3cf;
+      --bg:#f3f8ff;
       --card:#ffffff;
       --radius:16px;
     }
 
-    * { box-sizing: border-box; }
+    *{ box-sizing:border-box; }
 
     body{
       margin:0;
@@ -40,10 +39,7 @@
       box-shadow:0 3px 10px rgba(0,0,0,0.25);
     }
 
-    .header-inner{
-      max-width:960px;
-      margin:0 auto;
-    }
+    .header-inner{ max-width:960px; margin:0 auto; }
 
     .header-top{
       display:flex;
@@ -52,31 +48,21 @@
       gap:12px;
     }
 
-.header-logo{
-  width:72px;
-  height:72px;
-  border-radius:50%;
-  object-fit:contain;          /* الأهم */
-  background:#ffffff;
-  padding:4px;                 /* مساحة تنفّس للشعار */
-  box-shadow:
-    0 0 0 3px rgba(255,255,255,0.95),
-    0 0 0 6px rgba(242,193,78,0.6);
-  flex-shrink:0;
-}
-
-
-    .header-text h1{
-      margin:0;
-      font-size:1.25rem;
-      letter-spacing:0.02em;
+    .header-logo{
+      width:72px;
+      height:72px;
+      border-radius:50%;
+      object-fit:contain;
+      background:#fff;
+      padding:4px;
+      box-shadow:
+        0 0 0 3px rgba(255,255,255,0.95),
+        0 0 0 6px rgba(242,193,78,0.6);
+      flex-shrink:0;
     }
 
-    .header-text p{
-      margin:2px 0 0;
-      font-size:0.82rem;
-      opacity:0.95;
-    }
+    .header-text h1{ margin:0; font-size:1.25rem; letter-spacing:0.02em; }
+    .header-text p{ margin:2px 0 0; font-size:0.82rem; opacity:0.95; }
 
     .nav-tabs{
       display:flex;
@@ -109,11 +95,7 @@
       font-weight:700;
     }
 
-    .container{
-      max-width:960px;
-      margin:0 auto;
-      padding:12px;
-    }
+    .container{ max-width:960px; margin:0 auto; padding:12px; }
 
     section{ display:none; }
     section.active{ display:block; animation: fadeIn 0.25s ease-out; }
@@ -123,7 +105,6 @@
       to{ opacity:1; transform: translateY(0); }
     }
 
-    /* قائمة المنتجات */
     .menu-controls{
       display:flex;
       gap:8px;
@@ -140,7 +121,7 @@
       font-size:0.95rem;
       flex:1;
       min-width:120px;
-      background:#ffffff;
+      background:#fff;
       outline:none;
     }
 
@@ -172,15 +153,14 @@
       box-shadow:0 6px 16px rgba(0,0,0,0.14);
     }
 
-.menu-img{
-  width:100%;
-  height:200px;
-  background-size: contain;     /* بدل cover */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color:#ffffff;    /* خلفية بيضاء */
-}
-
+    .menu-img{
+      width:100%;
+      height:200px;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color:#ffffff;
+    }
 
     .menu-content{
       padding:9px 11px 11px;
@@ -190,29 +170,10 @@
       justify-content:space-between;
     }
 
-    .menu-item h3{
-      margin:0;
-      font-size:0.95rem;
-    }
-
-    .menu-category{
-      font-size:0.75rem;
-      color:#2b5f9e;
-      margin-top:2px;
-    }
-
-    .menu-desc{
-      font-size:0.78rem;
-      color:#455a64;
-      margin-top:3px;
-      min-height:2.3em;
-    }
-
-    .menu-tags{
-      font-size:0.7rem;
-      color:#607d8b;
-      margin-top:4px;
-    }
+    .menu-item h3{ margin:0; font-size:0.95rem; }
+    .menu-category{ font-size:0.75rem; color:#2b5f9e; margin-top:2px; }
+    .menu-desc{ font-size:0.78rem; color:#455a64; margin-top:3px; min-height:2.3em; }
+    .menu-tags{ font-size:0.72rem; color:#607d8b; margin-top:4px; }
 
     .menu-footer{
       display:flex;
@@ -243,7 +204,7 @@
 
     .btn-primary{
       background: linear-gradient(135deg, var(--primary), #2a8cff);
-      color:#ffffff;
+      color:#fff;
       box-shadow:0 2px 6px rgba(11,59,117,0.25);
     }
 
@@ -257,7 +218,6 @@
       color: var(--primary-dark);
     }
 
-    /* السلة */
     .two-cols{
       display:grid;
       grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
@@ -295,10 +255,7 @@
       background: radial-gradient(circle, var(--accent-soft), var(--accent));
     }
 
-    .cart-empty{
-      color:#607d8b;
-      font-size:0.85rem;
-    }
+    .cart-empty{ color:#607d8b; font-size:0.85rem; }
 
     .cart-item{
       display:flex;
@@ -329,7 +286,6 @@
     }
 
     .cart-bump{ animation: cartShake 0.35s ease; }
-
     @keyframes cartShake{
       0% { transform: translateX(0); }
       25% { transform: translateX(-3px); }
@@ -359,7 +315,7 @@
       border:1px solid rgba(30,111,214,0.25);
       font-family:inherit;
       font-size:1rem;
-      background:#ffffff;
+      background:#fff;
       outline:none;
     }
 
@@ -374,15 +330,10 @@
       grid-column: 1 / span 2;
     }
 
-    .status-message{
-      margin-top:8px;
-      font-size:0.8rem;
-    }
-
+    .status-message{ margin-top:8px; font-size:0.8rem; }
     .status-message.success{ color:#0a7e2a; }
     .status-message.error{ color:#b00020; }
 
-    /* تتبع الطلب */
     .track-form{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -391,10 +342,7 @@
       font-size:0.9rem;
     }
 
-    .track-form label{
-      font-size:0.8rem;
-      color:#2b5f9e;
-    }
+    .track-form label{ font-size:0.8rem; color:#2b5f9e; }
 
     .track-form input{
       width:100%;
@@ -402,7 +350,7 @@
       border-radius:10px;
       border:1px solid rgba(30,111,214,0.25);
       font-size:1rem;
-      background:#ffffff;
+      background:#fff;
       outline:none;
     }
 
@@ -411,10 +359,7 @@
       box-shadow: 0 0 0 3px rgba(30,111,214,0.12);
     }
 
-    .track-result{
-      margin-top:8px;
-      font-size:0.85rem;
-    }
+    .track-result{ margin-top:8px; font-size:0.85rem; }
 
     .track-card{
       padding:8px;
@@ -429,7 +374,6 @@
       color: var(--primary-dark);
     }
 
-    /* لوحة الإدارة */
     .admin-login{
       display:grid;
       grid-template-columns: minmax(0, 1fr) auto;
@@ -444,7 +388,7 @@
       border:1px solid rgba(30,111,214,0.25);
       font-family:inherit;
       font-size:1rem;
-      background:#ffffff;
+      background:#fff;
       outline:none;
     }
 
@@ -463,7 +407,7 @@
       border:1px solid rgba(30,111,214,0.25);
       font-family:inherit;
       font-size:0.9rem;
-      background:#ffffff;
+      background:#fff;
       outline:none;
     }
 
@@ -501,6 +445,7 @@
     .badge-preparing { background:#f2c14e; color:#0b3b75; }
     .badge-ready { background:#0b3b75; }
     .badge-done { background:#2e7d32; }
+    .badge-cancel { background:#b00020; }
 
     .admin-order-body-row{
       display:flex;
@@ -509,9 +454,7 @@
       margin-bottom:2px;
     }
 
-    .admin-order-body-row span.label{
-      font-weight:700;
-    }
+    .admin-order-body-row span.label{ font-weight:700; }
 
     .admin-order-footer{
       margin-top:6px;
@@ -526,7 +469,7 @@
       border-radius:8px;
       border:1px solid rgba(30,111,214,0.25);
       font-size:0.75rem;
-      background:#ffffff;
+      background:#fff;
       outline:none;
     }
 
@@ -562,14 +505,8 @@
       border:1px solid rgba(30,111,214,0.25);
       font-family:inherit;
       font-size:0.9rem;
-      background:#ffffff;
+      background:#fff;
       outline:none;
-    }
-
-    .product-form-grid input:focus,
-    .product-form-grid textarea:focus{
-      border-color: rgba(30,111,214,0.6);
-      box-shadow: 0 0 0 3px rgba(30,111,214,0.12);
     }
 
     .product-form-grid textarea{
@@ -586,7 +523,7 @@
     .admin-product-item{
       padding:6px;
       border-radius:10px;
-      background:#ffffff;
+      background:#fff;
       border:1px solid rgba(30,111,214,0.12);
       margin-bottom:5px;
       display:flex;
@@ -626,12 +563,11 @@
       border-radius:999px;
       border:1px solid rgba(30,111,214,0.25);
       font-size:0.75rem;
-      background:#ffffff;
+      background:#fff;
     }
 
     .color-chip input{ margin:0; }
 
-    /* اختيار اللون والمقاس في بطاقة المنتج */
     .menu-color-select, .menu-size-select{ margin-top:4px; }
 
     .color-select, .size-select{
@@ -640,7 +576,7 @@
       border-radius:999px;
       border:1px solid rgba(30,111,214,0.25);
       font-size:0.78rem;
-      background:#ffffff;
+      background:#fff;
       outline:none;
     }
 
@@ -649,7 +585,6 @@
       box-shadow: 0 0 0 3px rgba(30,111,214,0.12);
     }
 
-    /* زر واتساب عائم */
     .whatsapp-button{
       position:fixed;
       bottom:16px;
@@ -673,11 +608,7 @@
       box-shadow:0 4px 14px rgba(0,0,0,0.4);
     }
 
-    .whatsapp-button svg{
-      width:28px;
-      height:28px;
-      display:block;
-    }
+    .whatsapp-button svg{ width:28px; height:28px; display:block; }
 
     .footer{
       max-width:960px;
@@ -687,7 +618,7 @@
       color:#607d8b;
     }
 
-    /* شات بوت ذكي */
+    /* شات بوت */
     .chat-toggle-btn{
       position:fixed;
       bottom:16px;
@@ -727,10 +658,7 @@
       font-size:0.8rem;
     }
 
-    .chat-panel.open{
-      display:flex;
-      flex-direction:column;
-    }
+    .chat-panel.open{ display:flex; flex-direction:column; }
 
     .chat-header{
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
@@ -836,20 +764,9 @@
       cursor:pointer;
     }
 
-    .chat-product-chip strong{
-      display:block;
-      font-size:0.78rem;
-    }
-
-    .chat-product-chip span{
-      display:block;
-      color:#455a64;
-    }
-
-    .chat-product-chip small{
-      color: var(--primary-dark);
-      font-weight:800;
-    }
+    .chat-product-chip strong{ display:block; font-size:0.78rem; }
+    .chat-product-chip span{ display:block; color:#455a64; }
+    .chat-product-chip small{ color: var(--primary-dark); font-weight:800; }
 
     @media (max-width:500px){
       .chat-panel{ width: calc(100% - 32px); }
@@ -863,7 +780,6 @@
   <div class="header-inner">
     <div class="header-top">
       <img src="amanfoush-logo.png" alt="شركة البركة التجارية - المنفوش" class="header-logo">
-
       <div class="header-text">
         <h1>شركة البركة التجارية</h1>
         <p>شركة المنفوش للألبان والأجبان — منتجات ألبان عالية الجودة 🥛</p>
@@ -910,6 +826,7 @@
       <div>
         <div class="card">
           <h2>بيانات العميل</h2>
+
           <div class="checkout-grid">
             <div>
               <label>الاسم</label>
@@ -919,15 +836,27 @@
               <label>رقم الموبايل</label>
               <input type="tel" id="phone" placeholder="09xxxxxxxx">
             </div>
+
             <div>
-              <label>العنوان (إن وجد)</label>
-              <input type="text" id="address" placeholder="مدينة - حي - تفاصيل">
+              <label>المدينة</label>
+              <input type="text" id="city" placeholder="مثال: دمشق">
             </div>
+            <div>
+              <label>اسم المحل</label>
+              <input type="text" id="shopName" placeholder="مثال: بقالية الهدى">
+            </div>
+
+            <div style="grid-column: 1 / span 2;">
+              <label>العنوان التفصيلي</label>
+              <input type="text" id="address" placeholder="حي - شارع - بناء - طابق">
+            </div>
+
             <div>
               <label>ملاحظات على الطلب</label>
               <textarea id="notes" placeholder="مثال: أرسلوا تفاصيل على واتساب..."></textarea>
             </div>
           </div>
+
           <button class="btn btn-primary" id="submitOrderBtn" style="margin-top:8px; width:100%;">إرسال الطلب</button>
           <div id="status" class="status-message"></div>
         </div>
@@ -967,7 +896,7 @@
       <div id="adminArea" style="display:none;">
         <div class="admin-products-grid">
 
-          <!-- كارت إدارة الطلبات -->
+          <!-- الطلبات -->
           <div>
             <h3 style="margin-top:0; color:var(--primary-dark);">الطلبات</h3>
             <div class="admin-filters">
@@ -978,13 +907,14 @@
                 <option value="قيد التحضير">قيد التحضير</option>
                 <option value="جاهز">جاهز</option>
                 <option value="تم التسليم">تم التسليم</option>
+                <option value="ملغي">ملغي</option>
               </select>
             </div>
             <div id="adminStatus" class="status-message"></div>
             <div id="adminOrders" class="admin-orders"></div>
           </div>
 
-          <!-- كارت إضافة المنتجات -->
+          <!-- إضافة منتج -->
           <div>
             <h3 style="margin-top:0; color:var(--primary-dark);">إضافة منتج جديد</h3>
             <div class="product-form-grid">
@@ -1004,6 +934,16 @@
                 <label>رابط الصورة</label>
                 <input type="text" id="prodImageUrl" placeholder="https://...">
               </div>
+
+              <div>
+                <label>الكمية بالمخزون</label>
+                <input type="number" id="prodQty" min="0" step="1" placeholder="مثال: 50">
+              </div>
+              <div>
+                <label>حد أقصى لكل عميل (اختياري)</label>
+                <input type="number" id="prodMaxPerCustomer" min="0" step="1" placeholder="مثال: 3">
+              </div>
+
               <div>
                 <label>وسوم / كلمات مفتاحية</label>
                 <input type="text" id="prodTags" placeholder="مثال: لبن, زبادي, جبنة">
@@ -1012,15 +952,13 @@
               <div class="product-colors-box">
                 <label>الألوان المتاحة</label>
                 <div id="prodColorsOptions" class="color-options"></div>
-                <input type="text" id="prodColorsExtra"
-                       placeholder="ألوان إضافية مفصولة بفاصلة (اختياري)">
+                <input type="text" id="prodColorsExtra" placeholder="ألوان إضافية مفصولة بفاصلة (اختياري)">
               </div>
 
               <div class="product-sizes-box">
                 <label>المقاسات المتاحة</label>
                 <div id="prodSizesOptions" class="color-options"></div>
-                <input type="text" id="prodSizesExtra"
-                       placeholder="مقاسات إضافية مفصولة بفاصلة (اختياري)">
+                <input type="text" id="prodSizesExtra" placeholder="مقاسات إضافية مفصولة بفاصلة (اختياري)">
               </div>
 
               <div>
@@ -1028,6 +966,7 @@
                 <textarea id="prodDescription" placeholder="شرح مختصر عن المنتج"></textarea>
               </div>
             </div>
+
             <button class="btn btn-primary" id="addProductBtn" style="margin-top:8px; width:100%;">حفظ المنتج</button>
             <div id="prodStatus" class="status-message"></div>
 
@@ -1050,16 +989,13 @@
 <div class="whatsapp-button" onclick="openWhatsApp()" aria-label="التواصل عبر واتساب">
   <svg viewBox="0 0 32 32" aria-hidden="true">
     <circle cx="16" cy="16" r="16" fill="none"></circle>
-    <path fill="#ffffff" d="M16 6.4c-4.7 0-8.6 3.7-8.6 8.3 0 1.5.4 2.9 1.2 4.2l-0.8 3 3.1-0.8c1.2.7 2.6 1.1 4.1 1.1 4.7 0 8.6-3.7 8.6-8.3S20.7 6.4 16 6.4zm0 14.7c-1.3 0-2.6-.3-3.7-1l-0.3-.2-1.9.5.5-1.8-0.2-.3c-.7-1-1.1-2.2-1.1-3.4 0-3.4 2.8-6.1 6.3-6.1s6.3 2.7 6.3 6.1-2.8 6.1-6.3 6.1zm3.4-4.6c-0.2-.1-1.3-.6-1.5-.7s-.4-.1-.6.1c-.2.2-.7.7-.8.8-.1.1-.3.2-.6.1s-1.2-.5-2.3-1.5c-.8-.7-1.3-1.6-1.4-1.8s0-0.4.1-0.5c.1-.1.2-.3.3-.4.1-.1.1-.2.2-.3.1-.1.1-.2.2-.3.1-.1.1-.2.2-.3.1-.1.1-.2.2-.3.1-.1.1-.2.2-.3 0-.1 0-.2 0-.3s0-.2 0-.3c0-.1-.1-.3-.2-.4-.1-.1-.6-1.4-.9-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.1 1.8 2.9 4.3 4.1.6.3 1.1.5 1.5.6.6.2 1.1.2 1.5.1.5-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1-.1-.1-.2-.1-.4-.2z"></path>
+    <path fill="#ffffff" d="M16 6.4c-4.7 0-8.6 3.7-8.6 8.3 0 1.5.4 2.9 1.2 4.2l-0.8 3 3.1-0.8c1.2.7 2.6 1.1 4.1 1.1 4.7 0 8.6-3.7 8.6-8.3S20.7 6.4 16 6.4zm0 14.7c-1.3 0-2.6-.3-3.7-1l-0.3-.2-1.9.5.5-1.8-0.2-.3c-.7-1-1.1-2.2-1.1-3.4 0-3.4 2.8-6.1 6.3-6.1s6.3 2.7 6.3 6.1-2.8 6.1-6.3 6.1zm3.4-4.6c-0.2-.1-1.3-.6-1.5-.7s-.4-.1-.6.1c-.2.2-.7.7-.8.8-.1.1-.3.2-.6.1s-1.2-.5-2.3-1.5c-.8-.7-1.3-1.6-1.4-1.8s0-0.4.1-0.5c.1-.1.2-.3.3-.4.1-.1.1-.2.2-.3.1-.1.1-.2.2-.3.1-.1.1-.2.2-.3.1-.1.1-.2.2-.3.1-.1.1-.2.2-.3.1-.1.1-.2.2-.3 0-.1 0-.2 0-.3s0-.2 0-.3c0-.1-.1-.3-.2-.4-.1-.1-.6-1.4-.9-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.1 1.8 2.9 4.3 4.1.6.3 1.1.5 1.5.6.6.2 1.1.2 1.5.1.5-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1-.1-.1-.2-.1-.4-.2z"></path>
   </svg>
 </div>
 
-<!-- زر الشات بوت -->
-<div class="chat-toggle-btn" id="chatToggleBtn" aria-label="المساعد الذكي">
-  💬
-</div>
+<!-- زر الشات -->
+<div class="chat-toggle-btn" id="chatToggleBtn" aria-label="المساعد الذكي">💬</div>
 
-<!-- لوحة الشات بوت -->
 <div class="chat-panel" id="chatPanel">
   <div class="chat-header">
     <span>المساعد الذكي</span>
@@ -1069,7 +1005,6 @@
     <div class="chat-msg bot">
       <div class="bubble">
         أهلاً بك في شركة البركة التجارية 🥛<br>
-        (شركة المنفوش للألبان والأجبان)<br>
         اسألني عن أي منتج أو فئة.<br>
         <div class="chat-suggestions" id="chatSuggestions"></div>
       </div>
@@ -1082,10 +1017,10 @@
 </div>
 
 <script>
-  // رابط Web App من Apps Script (تم التحديث)
-  const API_URL = "https://script.google.com/macros/s/AKfycbxXZtZ6jrSamdEizY3HkUmD8Bgf3feriEQjYiTJQcTN-GE1xSSaglDMEG82BRLNcnyc/exec";
+  // ضع رابط الـ Web App (Apps Script)
+  const API_URL = "https://script.google.com/macros/s/AKfycbzI3BmlUPNx99V83Jws9sk0sH9csN0EjlcK51P0POByjPB4ix1YQiL2v6Ql2ws5_19Z/exec";
 
-  // رقم الواتساب (بدون + أو 00 أو فراغات أو رموز)
+  // رقم الواتساب بدون + أو 00
   const WHATSAPP_PHONE = "963957482415";
 
   let PRODUCTS = [];
@@ -1093,18 +1028,11 @@
   let ADMIN_TOKEN = '';
   let ADMIN_ORDERS = [];
 
-  // خيارات ألوان ومقاسات افتراضية للوحة الإدارة
-  const COLOR_OPTIONS = [
+  const COLOR_OPTIONS = [];
+  const SIZE_OPTIONS  = [];
 
-  ];
-  const SIZE_OPTIONS = [
-  
-  ];
-
-  // صوت بسيط عند إضافة منتج
   const addSound = new Audio("https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg");
 
-  /*********** أدوات عامة ***********/
   function escapeHtml_(str) {
     return (str || '').toString()
       .replace(/&/g, '&amp;')
@@ -1124,7 +1052,6 @@
     tab.addEventListener('click', () => {
       document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
-
       const target = tab.dataset.tab;
       document.querySelectorAll('section').forEach(sec => {
         sec.classList.toggle('active', sec.id === target);
@@ -1191,7 +1118,6 @@
 
     if (!sliced.length) {
       menuDiv.innerHTML = '<div>لا توجد منتجات مطابقة للبحث.</div>';
-      infoDiv.textContent = '';
       return;
     }
 
@@ -1201,22 +1127,11 @@
 
       const imgDiv = document.createElement('div');
       imgDiv.className = 'menu-img';
-      if (item.image_url) {
-        imgDiv.style.backgroundImage = `url("${item.image_url}")`;
-      } else {
-        imgDiv.style.backgroundImage =
-          'radial-gradient(circle at top, #e8f2ff, #2a8cff)';
-      }
+      if (item.image_url) imgDiv.style.backgroundImage = `url("${item.image_url}")`;
+      else imgDiv.style.backgroundImage = 'radial-gradient(circle at top, #e8f2ff, #2a8cff)';
 
-      const colorsArr = (item.colors || '')
-        .split(',')
-        .map(c => c.trim())
-        .filter(Boolean);
-
-      const sizesArr = (item.sizes || '')
-        .split(',')
-        .map(s => s.trim())
-        .filter(Boolean);
+      const colorsArr = (item.colors || '').split(',').map(c => c.trim()).filter(Boolean);
+      const sizesArr = (item.sizes || '').split(',').map(s => s.trim()).filter(Boolean);
 
       let colorsHtml = '';
       if (colorsArr.length) {
@@ -1243,36 +1158,42 @@
       const content = document.createElement('div');
       content.className = 'menu-content';
 
-      let tagsHtml = '';
-      if (item.tags) tagsHtml = '<div class="menu-tags">' + escapeHtml_(item.tags) + '</div>';
+      const available = Number(item.available ?? 0);
+      const maxPer = Number(item.max_per_customer || 0);
+
+      const tagsLine = [
+        item.tags ? escapeHtml_(item.tags) : '',
+        `المتوفر: <strong>${available}</strong>` + (maxPer ? ` • حد العميل: <strong>${maxPer}</strong>` : '')
+      ].filter(Boolean).join(' • ');
 
       content.innerHTML = `
         <div>
           <h3>${escapeHtml_(item.name)}</h3>
           <div class="menu-category">${escapeHtml_(item.category || '')}</div>
           <div class="menu-desc">${escapeHtml_(item.description || '')}</div>
-          ${tagsHtml}
+          <div class="menu-tags">${tagsLine}</div>
           ${colorsHtml}
           ${sizesHtml}
         </div>
         <div class="menu-footer">
           <div class="menu-price">${item.price} ل.س</div>
-          <button class="btn btn-primary" data-id="${item.id}">إضافة للسلة</button>
+          <button class="btn btn-primary" data-id="${item.id}"
+            ${available <= 0 ? 'disabled style="opacity:.55;cursor:not-allowed;"' : ''}>
+            ${available <= 0 ? 'نفدت الكمية' : 'إضافة للسلة'}
+          </button>
         </div>
       `;
 
-      content.querySelector('button').addEventListener('click', () => addToCart(item.id));
+      const btn = content.querySelector('button');
+      btn.addEventListener('click', () => addToCart(item.id));
 
       card.appendChild(imgDiv);
       card.appendChild(content);
       menuDiv.appendChild(card);
     });
 
-    if (total > MAX_RENDER) {
-      infoDiv.textContent = `تم عرض ${sliced.length} من ${total} منتج. ضيّق البحث لعرض نتائج أدق.`;
-    } else {
-      infoDiv.textContent = `عدد المنتجات المعروضة: ${total}`;
-    }
+    if (total > MAX_RENDER) infoDiv.textContent = `تم عرض ${sliced.length} من ${total} منتج. ضيّق البحث.`;
+    else infoDiv.textContent = `عدد المنتجات المعروضة: ${total}`;
   }
 
   document.getElementById('searchInput').addEventListener('input', renderProducts);
@@ -1283,8 +1204,7 @@
     const sel = document.querySelector('.color-select[data-id="' + productId + '"]');
     if (sel && sel.value) return sel.value;
     const p = PRODUCTS.find(m => m.id == productId);
-    if (!p) return '';
-    const arr = (p.colors || '').split(',').map(c => c.trim()).filter(Boolean);
+    const arr = (p?.colors || '').split(',').map(c => c.trim()).filter(Boolean);
     return arr.length ? arr[0] : '';
   }
 
@@ -1292,14 +1212,31 @@
     const sel = document.querySelector('.size-select[data-id="' + productId + '"]');
     if (sel && sel.value) return sel.value;
     const p = PRODUCTS.find(m => m.id == productId);
-    if (!p) return '';
-    const arr = (p.sizes || '').split(',').map(s => s.trim()).filter(Boolean);
+    const arr = (p?.sizes || '').split(',').map(s => s.trim()).filter(Boolean);
     return arr.length ? arr[0] : '';
+  }
+
+  function getQtyInCartForProduct(productId){
+    return CART.filter(x => x.id == productId).reduce((s,x)=>s + (x.qty||0), 0);
   }
 
   function addToCart(productId) {
     const item = PRODUCTS.find(m => m.id == productId);
     if (!item) return;
+
+    const available = Number(item.available ?? 0);
+    const already = getQtyInCartForProduct(productId);
+
+    if (already >= available) {
+      showStatus('لا يمكن إضافة أكثر من المتوفر لهذا المنتج.', false);
+      return;
+    }
+
+    const max = Number(item.max_per_customer || 0);
+    if (max && already >= max) {
+      showStatus('لا يمكن شراء أكثر من ' + max + ' من هذا المنتج لكل عميل.', false);
+      return;
+    }
 
     const color = findColorForProduct(productId);
     const size = findSizeForProduct(productId);
@@ -1340,6 +1277,18 @@
   function changeQty(cartKey, delta) {
     const existing = CART.find(c => c.key === cartKey);
     if (!existing) return;
+
+    // تحقق من عدم تجاوز المتوفر/الحد
+    const prod = PRODUCTS.find(p => p.id == existing.id);
+    const available = Number(prod?.available ?? 0);
+    const max = Number(prod?.max_per_customer || 0);
+
+    if (delta > 0) {
+      const already = getQtyInCartForProduct(existing.id);
+      if (already >= available) { showStatus('لا يمكن زيادة الكمية (تجاوز المتوفر).', false); return; }
+      if (max && already >= max) { showStatus('لا يمكن زيادة الكمية (تجاوز حد العميل).', false); return; }
+    }
+
     existing.qty += delta;
     if (existing.qty <= 0) CART = CART.filter(c => c.key !== cartKey);
     renderCart();
@@ -1382,58 +1331,79 @@
     totalDiv.textContent = 'المجموع: ' + total + ' ل.س';
   }
 
+  /*********** تعبئة تلقائية عند الموبايل ***********/
+  async function autoFillCustomerByPhone(){
+    const phone = document.getElementById('phone').value.trim();
+    if(!phone) return;
+
+    try{
+      const res = await fetch(API_URL + '?action=getCustomerByPhone&phone=' + encodeURIComponent(phone));
+      const data = await res.json();
+      if(!data.success || !data.customer) return;
+
+      document.getElementById('customerName').value = data.customer.name || '';
+      document.getElementById('city').value = data.customer.city || '';
+      document.getElementById('shopName').value = data.customer.shopName || '';
+      document.getElementById('address').value = data.customer.address || '';
+    }catch(e){}
+  }
+  document.getElementById('phone').addEventListener('blur', autoFillCustomerByPhone);
+
   /*********** إرسال الطلب ***********/
   async function submitOrder() {
-    if (!CART.length) {
-      showStatus('السلة فارغة، أضف منتجات أولاً.', false);
-      return;
-    }
+    if (!CART.length) { showStatus('السلة فارغة، أضف منتجات أولاً.', false); return; }
 
     const customerName = document.getElementById('customerName').value.trim();
     const phone = document.getElementById('phone').value.trim();
+    const city = document.getElementById('city').value.trim();
+    const shopName = document.getElementById('shopName').value.trim();
     const address = document.getElementById('address').value.trim();
     const notes = document.getElementById('notes').value.trim();
 
-    if (!customerName || !phone) {
-      showStatus('الرجاء إدخال الاسم ورقم الموبايل.', false);
-      return;
-    }
+    if (!customerName || !phone) { showStatus('الرجاء إدخال الاسم ورقم الموبايل.', false); return; }
 
     const total = CART.reduce((sum, item) => sum + item.price * item.qty, 0);
-    const order = { customerName, phone, address, notes, items: CART, total };
+    const order = { customerName, phone, city, shopName, address, notes, items: CART, total };
 
     showStatus('جاري إرسال الطلب...', true);
 
     try {
-      await fetch(API_URL, {
+      const res = await fetch(API_URL, {
         method: 'POST',
-        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify({ action: 'submitOrder', order })
       });
 
-      showStatus('تم استلام طلبك بنجاح ✅ سيتم التواصل معك لتأكيد الطلب. المجموع: ' + total + ' ل.س', true);
+      const data = await res.json();
+      if (!data.success) throw new Error(data.error || 'فشل إرسال الطلب');
+
+      showStatus('تم استلام طلبك بنجاح ✅ رقم الطلب: ' + data.orderId + ' — المجموع: ' + total + ' ل.س', true);
 
       CART = [];
       renderCart();
       document.getElementById('notes').value = '';
 
-      localStorage.setItem('roseCustomerPhone', phone);
-      localStorage.setItem('roseCustomerName', customerName);
-      localStorage.setItem('roseCustomerAddress', address);
+      localStorage.setItem('mf_customerPhone', phone);
+      localStorage.setItem('mf_customerName', customerName);
+      localStorage.setItem('mf_city', city);
+      localStorage.setItem('mf_shopName', shopName);
+      localStorage.setItem('mf_address', address);
+
+      await loadProducts();
     } catch (err) {
-      showStatus('تعذر إرسال الطلب (مشكلة في الاتصال بالإنترنت). حاول مرة أخرى.', false);
+      showStatus('تعذر إرسال الطلب: ' + err.message, false);
     }
   }
 
   function showStatus(msg, success) {
     const s = document.getElementById('status');
-    s.textContent = msg;
+    s.innerHTML = msg;
     s.className = 'status-message ' + (success ? 'success' : 'error');
   }
 
   document.getElementById('submitOrderBtn').addEventListener('click', submitOrder);
 
-  /*********** زر واتساب ***********/
+  /*********** واتساب ***********/
   function openWhatsApp() {
     const base = "https://wa.me/" + WHATSAPP_PHONE;
 
@@ -1441,6 +1411,8 @@
     if (CART.length) {
       const customerName = document.getElementById('customerName').value.trim();
       const phone = document.getElementById('phone').value.trim();
+      const city = document.getElementById('city').value.trim();
+      const shopName = document.getElementById('shopName').value.trim();
       const address = document.getElementById('address').value.trim();
       const notes = document.getElementById('notes').value.trim();
       const total = CART.reduce((sum, item) => sum + item.price * item.qty, 0);
@@ -1460,10 +1432,11 @@
       lines.push("");
       lines.push("المجموع: " + total + " ل.س");
       if (customerName) lines.push("الاسم: " + customerName);
-      if (phone)       lines.push("هاتف العميل: " + phone);
-      if (address)     lines.push("العنوان: " + address);
-      if (notes)       lines.push("ملاحظات: " + notes);
-
+      if (phone) lines.push("هاتف العميل: " + phone);
+      if (city) lines.push("المدينة: " + city);
+      if (shopName) lines.push("اسم المحل: " + shopName);
+      if (address) lines.push("العنوان: " + address);
+      if (notes) lines.push("ملاحظات: " + notes);
     } else {
       lines.push("مرحبا، أريد الاستفسار عن منتجات شركة البركة التجارية (المنفوش).");
     }
@@ -1502,12 +1475,11 @@
 
       let html = '';
       orders.forEach(o => {
-        const badge = getStatusBadge_(o.status);
         html += `
           <div class="track-card">
-            <div><strong>رقم الطلب:</strong> ${o.order_id}</div>
+            <div><strong>رقم الطلب:</strong> ${escapeHtml_(o.order_id)}</div>
             <div><strong>التاريخ:</strong> ${escapeHtml_(formatDateTime_(o.timestamp))}</div>
-            <div><strong>الحالة:</strong> <span class="track-status">${badge}</span></div>
+            <div><strong>الحالة:</strong> <span class="track-status">${escapeHtml_(o.status || 'جديد')}</span></div>
             <div><strong>المجموع:</strong> ${o.total} ل.س</div>
           </div>
         `;
@@ -1517,15 +1489,6 @@
     } catch (err) {
       resultDiv.textContent = 'حدث خطأ: ' + err.message;
     }
-  }
-
-  function getStatusBadge_(status) {
-    const s = status || 'جديد';
-    if (s === 'جديد') return '🔵 جديد';
-    if (s === 'قيد التحضير') return '🟡 قيد التنفيذ';
-    if (s === 'جاهز') return '🔷 جاهز للتسليم';
-    if (s === 'تم التسليم') return '✅ تم التسليم';
-    return s;
   }
 
   document.getElementById('trackBtn').addEventListener('click', trackOrders);
@@ -1586,10 +1549,7 @@
     const filter = document.getElementById('adminStatusFilter').value;
     listDiv.innerHTML = '';
 
-    if (!ADMIN_ORDERS.length) {
-      listDiv.textContent = 'لا توجد طلبات حالياً.';
-      return;
-    }
+    if (!ADMIN_ORDERS.length) { listDiv.textContent = 'لا توجد طلبات حالياً.'; return; }
 
     const orders = [...ADMIN_ORDERS].sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
 
@@ -1611,6 +1571,7 @@
       if (s === 'قيد التحضير') return 'badge-preparing';
       if (s === 'جاهز') return 'badge-ready';
       if (s === 'تم التسليم') return 'badge-done';
+      if (s === 'ملغي') return 'badge-cancel';
       return 'badge-new';
     })(status);
 
@@ -1636,8 +1597,10 @@
         <div class="admin-order-body">
           <div class="admin-order-body-row"><span class="label">الاسم:</span><span>${escapeHtml_(o.customerName)}</span></div>
           <div class="admin-order-body-row"><span class="label">هاتف:</span><span>${escapeHtml_(o.phone)}</span></div>
-          <div class="admin-order-body-row"><span class="label">العنوان:</span><span>${escapeHtml_(o.address)}</span></div>
-          <div class="admin-order-body-row"><span class="label">ملاحظات:</span><span>${escapeHtml_(o.notes)}</span></div>
+          <div class="admin-order-body-row"><span class="label">المدينة:</span><span>${escapeHtml_(o.city || '')}</span></div>
+          <div class="admin-order-body-row"><span class="label">المحل:</span><span>${escapeHtml_(o.shopName || '')}</span></div>
+          <div class="admin-order-body-row"><span class="label">العنوان:</span><span>${escapeHtml_(o.address || '')}</span></div>
+          <div class="admin-order-body-row"><span class="label">ملاحظات:</span><span>${escapeHtml_(o.notes || '')}</span></div>
           <div class="admin-order-body-row"><span class="label">المنتجات:</span><span>${escapeHtml_(itemsPreview)}</span></div>
           <div class="admin-order-body-row"><span class="label">التاريخ:</span><span>${escapeHtml_(formatDateTime_(o.timestamp))}</span></div>
           <div class="admin-order-body-row"><span class="label">المجموع:</span><span>${o.total} ل.س</span></div>
@@ -1647,9 +1610,10 @@
           <div>
             <select onchange="changeAdminStatus('${o.order_id}', this.value)">
               <option value="جديد" ${status === 'جديد' ? 'selected' : ''}>جديد</option>
-              <option value="قيد التحضير" ${status === 'قيد التحضير' ? 'selected' : ''}>قيد التنفيذ</option>
+              <option value="قيد التحضير" ${status === 'قيد التحضير' ? 'selected' : ''}>قيد التحضير</option>
               <option value="جاهز" ${status === 'جاهز' ? 'selected' : ''}>جاهز</option>
               <option value="تم التسليم" ${status === 'تم التسليم' ? 'selected' : ''}>تم التسليم</option>
+              <option value="ملغي" ${status === 'ملغي' ? 'selected' : ''}>ملغي</option>
             </select>
           </div>
           <button class="btn btn-ghost" onclick="refreshSingleOrder('${o.order_id}')">تحديث</button>
@@ -1661,9 +1625,9 @@
   async function changeAdminStatus(orderId, newStatus) {
     if (!ADMIN_TOKEN) return;
     try {
-      await fetch(API_URL, {
+      const res = await fetch(API_URL, {
         method: 'POST',
-        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify({
           action: 'updateOrderStatus',
           adminPassword: ADMIN_TOKEN,
@@ -1671,18 +1635,21 @@
           newStatus
         })
       });
+      const data = await res.json();
+      if(!data.success) throw new Error(data.error || 'فشل تحديث الحالة');
 
       const target = ADMIN_ORDERS.find(o => o.order_id === orderId);
       if (target) target.status = newStatus;
-
       renderAdminOrdersList_();
 
       const statusDiv = document.getElementById('adminStatus');
       statusDiv.textContent = 'تم تحديث حالة الطلب ' + orderId + ' إلى "' + newStatus + '".';
       statusDiv.className = 'status-message success';
+
+      await loadProducts();
     } catch (err) {
       const statusDiv = document.getElementById('adminStatus');
-      statusDiv.textContent = 'خطأ في تحديث الحالة (تحقق من الاتصال بالإنترنت).';
+      statusDiv.textContent = 'خطأ في تحديث الحالة: ' + err.message;
       statusDiv.className = 'status-message error';
     }
   }
@@ -1728,12 +1695,14 @@
       return;
     }
 
-    const name        = document.getElementById('prodName').value.trim();
-    const category    = document.getElementById('prodCategory').value.trim();
-    const price       = document.getElementById('prodPrice').value.trim();
-    const image_url   = document.getElementById('prodImageUrl').value.trim();
-    const tags        = document.getElementById('prodTags').value.trim();
+    const name = document.getElementById('prodName').value.trim();
+    const category = document.getElementById('prodCategory').value.trim();
+    const price = document.getElementById('prodPrice').value.trim();
+    const image_url = document.getElementById('prodImageUrl').value.trim();
+    const tags = document.getElementById('prodTags').value.trim();
     const description = document.getElementById('prodDescription').value.trim();
+    const qty = document.getElementById('prodQty').value.trim();
+    const max_per_customer = document.getElementById('prodMaxPerCustomer').value.trim();
 
     const colorsSelected = Array.from(document.querySelectorAll('.prod-color-check:checked')).map(ch => ch.value);
     const colorsExtra = document.getElementById('prodColorsExtra').value.trim();
@@ -1755,15 +1724,23 @@
     document.getElementById('prodStatus').className = 'status-message';
 
     try {
-      await fetch(API_URL, {
+      const res = await fetch(API_URL, {
         method: 'POST',
-        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify({
           action: 'addProduct',
           adminPassword: ADMIN_TOKEN,
-          product: { name, category, price, image_url, description, tags, colors, sizes }
+          product: {
+            name, category, price, image_url, description, tags, colors, sizes,
+            qty: qty ? Number(qty) : 0,
+            reserved: 0,
+            max_per_customer: max_per_customer ? Number(max_per_customer) : ''
+          }
         })
       });
+
+      const data = await res.json();
+      if(!data.success) throw new Error(data.error || 'فشل حفظ المنتج');
 
       document.getElementById('prodStatus').textContent = 'تم حفظ المنتج بنجاح ✅';
       document.getElementById('prodStatus').className = 'status-message success';
@@ -1774,6 +1751,8 @@
       document.getElementById('prodImageUrl').value = '';
       document.getElementById('prodTags').value = '';
       document.getElementById('prodDescription').value = '';
+      document.getElementById('prodQty').value = '';
+      document.getElementById('prodMaxPerCustomer').value = '';
       document.getElementById('prodColorsExtra').value = '';
       document.getElementById('prodSizesExtra').value = '';
       document.querySelectorAll('.prod-color-check').forEach(ch => ch.checked = false);
@@ -1791,10 +1770,7 @@
     if (!listDiv) return;
     listDiv.innerHTML = '';
 
-    if (!PRODUCTS.length) {
-      listDiv.textContent = 'لا توجد منتجات بعد.';
-      return;
-    }
+    if (!PRODUCTS.length) { listDiv.textContent = 'لا توجد منتجات بعد.'; return; }
 
     const latest = [...PRODUCTS].slice(-20).reverse();
     latest.forEach(p => {
@@ -1808,7 +1784,9 @@
       const info = document.createElement('div');
       info.innerHTML = `
         <div><strong>${escapeHtml_(p.name)}</strong></div>
-        <div style="font-size:0.75rem; color:#607d8b;">${escapeHtml_(p.category || '')} • ${p.price} ل.س</div>
+        <div style="font-size:0.75rem; color:#607d8b;">
+          ${escapeHtml_(p.category || '')} • ${p.price} ل.س • المتوفر: ${Number(p.available ?? 0)}
+        </div>
       `;
 
       row.appendChild(thumb);
@@ -1819,7 +1797,7 @@
 
   document.getElementById('addProductBtn').addEventListener('click', addProduct);
 
-  /*********** شات بوت ***********/
+  /*********** الشات ***********/
   const chatToggleBtn = document.getElementById('chatToggleBtn');
   const chatPanel = document.getElementById('chatPanel');
   const chatCloseBtn = document.getElementById('chatCloseBtn');
@@ -1857,20 +1835,14 @@
       const chip = document.createElement('div');
       chip.className = 'chat-suggestion-chip';
       chip.textContent = c;
-      chip.addEventListener('click', () => {
-        chatInput.value = c;
-        handleChatSend();
-      });
+      chip.addEventListener('click', () => { chatInput.value = c; handleChatSend(); });
       chatSuggestionsDiv.appendChild(chip);
     });
   }
 
   function answerChat(query) {
     const q = query.toLowerCase();
-    if (!PRODUCTS.length) {
-      addChatMessage('حالياً لا توجد منتجات للبحث. حاول لاحقاً.', false);
-      return;
-    }
+    if (!PRODUCTS.length) { addChatMessage('حالياً لا توجد منتجات للبحث.', false); return; }
 
     const matches = PRODUCTS.filter(p => {
       const hay = (
@@ -1895,7 +1867,7 @@
         <div class="chat-product-chip" data-id="${p.id}">
           <strong>${escapeHtml_(p.name)}</strong>
           <span>${escapeHtml_(p.category || '')}</span>
-          <small>${p.price} ل.س</small>
+          <small>${p.price} ل.س • المتوفر: ${Number(p.available ?? 0)}</small>
         </div>
       `;
     });
@@ -1916,17 +1888,27 @@
   }
 
   /*********** تهيئة ***********/
-  document.addEventListener('DOMContentLoaded', () => {
-    const savedPhone = localStorage.getItem('roseCustomerPhone') || '';
-    const savedName = localStorage.getItem('roseCustomerName') || '';
-    const savedAddress = localStorage.getItem('roseCustomerAddress') || '';
+  document.addEventListener('DOMContentLoaded', async () => {
+    // تحميل بيانات محلية
+    const savedPhone = localStorage.getItem('mf_customerPhone') || '';
+    const savedName = localStorage.getItem('mf_customerName') || '';
+    const savedCity = localStorage.getItem('mf_city') || '';
+    const savedShop = localStorage.getItem('mf_shopName') || '';
+    const savedAddress = localStorage.getItem('mf_address') || '';
+
     if (savedPhone) document.getElementById('phone').value = savedPhone;
     if (savedName) document.getElementById('customerName').value = savedName;
+    if (savedCity) document.getElementById('city').value = savedCity;
+    if (savedShop) document.getElementById('shopName').value = savedShop;
     if (savedAddress) document.getElementById('address').value = savedAddress;
 
     renderColorOptionsAdmin();
     renderSizeOptionsAdmin();
-    loadProducts();
+
+    await loadProducts();
+
+    // إن وجد رقم هاتف محفوظ حاول تعبئة أحدث بيانات من السيرفر
+    if (savedPhone) autoFillCustomerByPhone();
   });
 </script>
 
