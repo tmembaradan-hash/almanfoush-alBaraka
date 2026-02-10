@@ -771,6 +771,72 @@
     @media (max-width:500px){
       .chat-panel{ width: calc(100% - 32px); }
     }
+    /* Toast إشعارات */
+.toast{
+  position: fixed;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  z-index: 2000;
+  background: #ffffff;
+  border: 1px solid rgba(30,111,214,0.18);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+  border-radius: 14px;
+  padding: 10px 12px;
+  min-width: 240px;
+  max-width: calc(100% - 28px);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 0.9rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.toast.show{
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+.toast .icon{
+  width: 28px;
+  height: 28px;
+  border-radius: 10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight: 900;
+}
+.toast.success .icon{ background: rgba(46,125,50,0.12); color:#2e7d32; }
+.toast.error .icon{ background: rgba(176,0,32,0.12); color:#b00020; }
+.toast .text{ flex:1; line-height:1.3; }
+.toast .close{
+  cursor:pointer;
+  font-size: 1rem;
+  padding: 0 6px;
+  color:#607d8b;
+}
+.btn-disabled{
+  opacity:0.55 !important;
+  cursor:not-allowed !important;
+}
+.menu-meta{
+  font-size:0.74rem;
+  color:#607d8b;
+  margin-top:5px;
+  line-height:1.5;
+}
+.menu-meta strong{ color: var(--primary-dark); }
+.menu-limit{
+  margin-top:6px;
+  padding:6px 8px;
+  border-radius:10px;
+  background:#f3f8ff;
+  border:1px solid rgba(30,111,214,0.12);
+  font-size:0.74rem;
+  color:#2b5f9e;
+}
+
   </style>
 </head>
 
@@ -1015,6 +1081,12 @@
     <button id="chatSendBtn">إرسال</button>
   </div>
 </div>
+<!-- Toast -->
+<div id="toast" class="toast" aria-live="polite" aria-atomic="true">
+  <div class="icon" id="toastIcon">!</div>
+  <div class="text" id="toastText">...</div>
+  <div class="close" id="toastClose">✕</div>
+</div>
 
 <script>
   // ضع رابط الـ Web App (Apps Script)
@@ -1027,6 +1099,48 @@
   let CART = [];
   let ADMIN_TOKEN = '';
   let ADMIN_ORDERS = [];
+/******** Toast ********/
+let TOAST_TIMER = null;
+function toast_(msg, ok){
+  const t = document.getElementById('toast');
+  const text = document.getElementById('toastText');
+  const icon = document.getElementById('toastIcon');
+  const close = document.getElementById('toastClose');
+
+  if(!t) { // احتياط لو ما انضاف العنصر
+    showStatus(msg, ok);
+    return;
+  }
+
+  t.classList.remove('success','error','show');
+  t.classList.add(ok ? 'success' : 'error');
+
+  icon.textContent = ok ? '✓' : '!';
+  text.innerHTML = msg;
+
+  clearTimeout(TOAST_TIMER);
+  t.classList.add('show');
+
+  close.onclick = () => t.classList.remove('show');
+  TOAST_TIMER = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+/******** حساب الكميات والمتبقي ********/
+function getQtyInCartForProduct(productId){
+  return CART.filter(x => x.id == productId).reduce((s,x)=>s + (Number(x.qty)||0), 0);
+}
+
+function remainingFor_(p){
+  const available = Number(p.available ?? 0);
+  const maxPer = Number(p.max_per_customer || 0);
+  const inCart = getQtyInCartForProduct(p.id);
+
+  const remainingByStock = Math.max(0, available - inCart);
+  const remainingByMax = maxPer ? Math.max(0, maxPer - inCart) : Infinity;
+
+  const remaining = Math.min(remainingByStock, remainingByMax);
+  return { available, maxPer, inCart, remaining };
+}
 
   const COLOR_OPTIONS = [];
   const SIZE_OPTIONS  = [];
