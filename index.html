@@ -1268,59 +1268,6 @@ function renderProducts() {
       `;
     }
 
-    const content = document.createElement('div');
-    content.className = 'menu-content';
-
-    const { available, maxPer, inCart, remaining } = remainingFor_(item);
-    const disabled = remaining <= 0;
-
-    const btnText = disabled
-      ? (available <= 0 ? 'نفدت الكمية' : (maxPer && inCart >= maxPer ? 'وصلت للحد' : 'غير متاح'))
-      : 'إضافة للسلة';
-
-    const tagsLine = [
-      item.tags ? escapeHtml_(item.tags) : '',
-      `المتوفر: <strong>${available}</strong>`,
-      `في السلة: <strong>${inCart}</strong>`,
-      maxPer ? `حد العميل: <strong>${maxPer}</strong>` : '',
-      `المتبقي: <strong>${remaining === Infinity ? available : remaining}</strong>`
-    ].filter(Boolean).join(' • ');
-
-    const limitBox = maxPer ? `
-      <div class="menu-limit">
-        حد العميل: <strong>${maxPer}</strong> • متبقي لك: <strong>${Math.max(0, maxPer - inCart)}</strong>
-      </div>
-    ` : '';
-
-    content.innerHTML = `
-      <div>
-        <h3>${escapeHtml_(item.name)}</h3>
-        <div class="menu-category">${escapeHtml_(item.category || '')}</div>
-        <div class="menu-desc">${escapeHtml_(item.description || '')}</div>
-        <div class="menu-tags">${tagsLine}</div>
-        ${limitBox}
-        ${colorsHtml}
-        ${sizesHtml}
-      </div>
-      <div class="menu-footer">
-        <div class="menu-price">${item.price} ل.س</div>
-        <button class="btn btn-primary ${disabled ? 'btn-disabled' : ''}" data-id="${item.id}" ${disabled ? 'disabled' : ''}>
-          ${btnText}
-        </button>
-      </div>
-    `;
-
-    const btn = content.querySelector('button');
-    btn.addEventListener('click', () => addToCart(item.id));
-
-    card.appendChild(imgDiv);
-    card.appendChild(content);
-    menuDiv.appendChild(card);
-  });
-
-  if (total > MAX_RENDER) infoDiv.textContent = `تم عرض ${sliced.length} من ${total} منتج. ضيّق البحث.`;
-  else infoDiv.textContent = `عدد المنتجات المعروضة: ${total}`;
-}
 
 
       const content = document.createElement('div');
